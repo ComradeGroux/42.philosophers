@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:28:08 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/01 16:42:56 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/01 17:20:39 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	main(int argc, char **argv, char **envp)
 	{
 		init_data(&data, argv);
 	}
-	else
-		// ERROR
 	return (0);
 }
 

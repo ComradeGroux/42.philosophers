@@ -6,7 +6,7 @@
 #    By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/07 13:09:11 by vgroux            #+#    #+#              #
-#    Updated: 2023/03/01 16:17:13 by vgroux           ###   ########.fr        #
+#    Updated: 2023/03/01 17:13:06 by vgroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS_LIST =	main.c \
 			init.c \
 			philo.c \
 			time.c \
+			utils.c \
 
 SRCS =		${addprefix ${DIR_S}, ${SRCS_LIST}}
 

@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:38:18 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/01 16:24:39 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/01 17:19:27 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,13 @@ void				init_data(t_data *data, char **argv);
 
 /*		ERROR		*/
 int					check_input(int argc, char **argv);
+void				err(char *str, int flag);
 
 /*		TIME		*/
 unsigned long long	getcurrenttime(void);
 unsigned long long	getrunningtime(t_data *data);
+
+/*		UTILS		*/
+int					ft_atoi(char *str);
 
 #endif
