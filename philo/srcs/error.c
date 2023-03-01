@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:08:17 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/01 17:22:06 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/01 17:24:54 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	err(char *str, int flag)
 	printf("philo: error: %s\n", str);
 	if (flag)
 	{
-		printf("./philo number_of_philosophers time_to_die time_to_eat time_to_sleep");
-		printf(" [number_of_times_each_philosopher_must_eat]\n");
+		printf("./philo number_of_philosophers time_to_die time_to_eat ");
+		printf("time_to_sleep [number_of_times_each_philosopher_must_eat]\n");
 	}
 }
