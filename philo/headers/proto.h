@@ -6,29 +6,47 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:38:18 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/01 17:24:06 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/02 18:45:20 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PROTO_H
 # define PROTO_H
 
-typedef struct s_data
+typedef struct s_times
 {
-	unsigned long long	start_time;
-	int					nb_philo;
-	int					nb_fork;
-	int					die_time;
-	int					eat_time;
-	int					sleep_time;
+	unsigned long long	die_time;
+	unsigned long long	eat_time;
+	unsigned long long	sleep_time;
 	int					nb_meal;
-}	t_data;
+	unsigned long long	start_time;
+}	t_times;
+
+typedef struct s_philo
+{
+	int					id;
+	unsigned long long	last_meal;
+	int					state;
+	pthread_mutex_t		fork;
+	pthread_mutex_t		*next_fork;
+	pthread_t			th;
+	t_times				*times;
+	t_philo				*prev;
+	t_philo				*next;
+}	t_philo;
+
+typedef struct s_main
+{
+	int					nb_fork;
+	pthread_mutex_t		*print;
+	t_times				*times;
+	t_philo				*first_philo;
+}	t_main;
 
 /*		MAIN		*/
 int					main(int argc, char **argv, char **envp);
 
 /*		INIT		*/
-void				init_data(t_data *data, char **argv);
 
 /*		ERROR		*/
 int					check_input(int argc, char **argv);
@@ -36,7 +54,7 @@ void				err(char *str, int flag);
 
 /*		TIME		*/
 unsigned long long	getcurrenttime(void);
-unsigned long long	getrunningtime(t_data *data);
+unsigned long long	getrunningtime(t_main *main);
 
 /*		UTILS		*/
 int					ft_atoi(char *str);

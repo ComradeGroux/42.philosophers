@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:16:55 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/01 16:45:27 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/02 18:33:48 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ unsigned long long	getcurrenttime(void)
 /**
  * return the running time in ms
 */
-unsigned long long	getrunningtime(t_data *data)
+unsigned long long	getrunningtime(t_main *main)
 {
-	return (getcurrenttime() - data->start_time);
+	return (getcurrenttime() - main->times->start_time);
 }
