@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 16:28:08 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/05 16:18:20 by vgroux           ###   ########.fr       */
+/*   Created: 2023/03/05 16:13:37 by vgroux            #+#    #+#             */
+/*   Updated: 2023/03/05 16:13:57 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv, char **envp)
+int	clear_main(t_main *main)
 {
-	t_main	main;
-
-	(void)envp;
-	if (check_input(argc, argv))
-	{
-		if (init(&main, argc, argv))
-		{
-			clear_main(&main);
-			return (err(INIT_ERROR, 0));
-		}
-	}
-	return (0);
+	pthread_mutex_destroy(main->print);
+	free(main->times);
+	return (1);
 }
 
-/**
- * print the status of a philosopher
-*/
-void	philo_change(t_main *main, int id_philo, char *status)
+int	clear_philo(t_main *main)
 {
-	pthread_mutex_lock(main->print);
-	printf("%llu %i %s\n", getrunningtime(main), id_philo, status);
-	pthread_mutex_unlock(main->print);
+	t_philo	*tmp;
+
+	if (main->first_philo != NULL)
+	{
+		tmp = main->first_philo->next;
+		if (!tmp)
+			free(main->first_philo);
+		else
+		{
+			while (tmp->next != main->first_philo)
+			{
+				free(tmp->prev);
+				pthread_mutex_destroy(&tmp->fork);
+				tmp = tmp->next;
+			}
+		}
+	}
+	return (clear_main(main));
 }

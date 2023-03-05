@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:38:18 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/02 18:45:20 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/03 14:40:21 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct s_philo
 	pthread_mutex_t		*next_fork;
 	pthread_t			th;
 	t_times				*times;
-	t_philo				*prev;
-	t_philo				*next;
+	struct s_philo		*prev;
+	struct s_philo		*next;
 }	t_philo;
 
 typedef struct s_main
@@ -50,7 +50,7 @@ int					main(int argc, char **argv, char **envp);
 
 /*		ERROR		*/
 int					check_input(int argc, char **argv);
-void				err(char *str, int flag);
+int					err(char *str, int flag);
 
 /*		TIME		*/
 unsigned long long	getcurrenttime(void);

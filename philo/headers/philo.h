@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:30:15 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/02 16:03:58 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/03 14:40:01 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
+
+# define INIT_ERROR "init error"
 
 # define FORK "has taken a fork"
 # define EAT "is eating"

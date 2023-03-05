@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:08:17 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/01 17:24:54 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/03 14:40:12 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	check_input(int argc, char **argv)
 /**
  * flag = print how to exe
 */
-void	err(char *str, int flag)
+int	err(char *str, int flag)
 {
 	printf("philo: error: %s\n", str);
 	if (flag)
@@ -49,4 +49,5 @@ void	err(char *str, int flag)
 		printf("./philo number_of_philosophers time_to_die time_to_eat ");
 		printf("time_to_sleep [number_of_times_each_philosopher_must_eat]\n");
 	}
+	return (1);
 }
