@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:09:01 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/05 16:17:52 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/05 16:37:32 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_times	*init_times(int argc, char **argv)
 	times->eat_time = ft_atoi(argv[3]);
 	times->sleep_time = ft_atoi(argv[4]);
 	if (argc == 6)
-		times->nb_meal = argv[5];
+		times->nb_meal = ft_atoi(argv[5]);
 	else
 		times->nb_meal = 0;
 	return (times);

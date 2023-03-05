@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:18:23 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/02 17:18:58 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/05 16:39:38 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	*routine(void *arg)
 {
+	(void)arg;
 	printf("Thread\n");
 	return (NULL);
 }

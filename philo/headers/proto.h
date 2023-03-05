@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:38:18 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/03 14:40:21 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/05 16:37:11 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,20 @@ typedef struct s_main
 int					main(int argc, char **argv, char **envp);
 
 /*		INIT		*/
+int					init(t_main *main, int argc, char **argv);
+t_times				*init_times(int argc, char **argv);
+
+/*		CLEAR		*/
+int					clear_main(t_main *main);
+int					clear_philo(t_main *main);
 
 /*		ERROR		*/
 int					check_input(int argc, char **argv);
 int					err(char *str, int flag);
+
+/*		PHILO		*/
+t_philo				*create_philo(t_main *main, int id);
+int					add_back(t_main *main, t_philo *philo);
 
 /*		TIME		*/
 unsigned long long	getcurrenttime(void);

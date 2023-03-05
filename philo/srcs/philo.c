@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:08:49 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/05 16:34:05 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/05 16:39:05 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ t_philo	*create_philo(t_main *main, int id)
 	philo->state = -1;
 	pthread_mutex_init(&philo->fork, NULL);
 	philo->next_fork = NULL;
-	philo->th = NULL;
 	philo->times = main->times;
 	philo->prev = NULL;
 	philo->next = NULL;
@@ -61,16 +60,16 @@ int	add_back(t_main *main, t_philo *philo)
 		return (1);
 	}
 	else if (!main->first_philo->prev)
-		main->first_philo->prev = &philo;
+		main->first_philo->prev = philo;
 	else
 	{
 		tmp = main->first_philo->prev;
 		philo->prev = tmp;
-		main->first_philo->prev = &philo;
+		main->first_philo->prev = philo;
 	}
-	tmp->next = &philo;
+	tmp->next = philo;
 	tmp->next_fork = &philo->fork;
 	philo->next_fork = &main->first_philo->fork;
-	philo->next = &main->first_philo;
+	philo->next = main->first_philo;
 	return (1);
 }
