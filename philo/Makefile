@@ -6,7 +6,7 @@
 #    By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/07 13:09:11 by vgroux            #+#    #+#              #
-#    Updated: 2023/03/07 17:49:59 by vgroux           ###   ########.fr        #
+#    Updated: 2023/03/07 18:52:42 by vgroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,11 @@ DIR_S =	srcs/
 DIR_O =	objs/
 
 SRCS_LIST =	main.c \
+			init.c \
+			utils.c \
+			clear.c \
+			error.c \
+			time.c \
 
 SRCS =		${addprefix ${DIR_S}, ${SRCS_LIST}}
 

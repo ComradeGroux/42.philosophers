@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:09:01 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/07 17:30:02 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/07 18:12:41 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	init(t_main *main, int argc, char **argv)
 
 	i = 0;
 	main->nb_philo = ft_atoi(argv[1]);
-	main->first_philo = NULL;
 	pthread_mutex_init(&main->print, NULL);
 	main->times = init_times(argc, argv);
 	if (!main->times)
