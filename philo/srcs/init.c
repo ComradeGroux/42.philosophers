@@ -1,0 +1,80 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/07 17:58:09 by vgroux            #+#    #+#             */
+/*   Updated: 2023/03/07 18:53:51 by vgroux           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "philo.h"
+
+int	init(t_main *main, int argc, char **argv)
+{
+	if (init_main(main, argc, argv))
+		return (err(ERR_INIT, 0));
+	init_philo(main);
+	return (0);
+}
+
+int	init_main(t_main *main, int argc, char **argv)
+{
+	main->nb_thread = ft_atoi(argv[1]);
+	main->philo = malloc(sizeof(t_philo) * (main->nb_thread + 1));
+	if (!main->philo)
+		return (1);
+	pthread_mutex_init(&main->print, NULL);
+	main->times = init_times(argc, argv);
+	if (!main->times)
+	{
+		pthread_mutex_destroy(&main->print);
+		free(main->philo);
+		return (1);
+	}
+	main->philo_dead = 0;
+	return (0);
+}
+
+t_times	*init_times(int argc, char **argv)
+{
+	t_times	*times;
+
+	times = malloc(sizeof(t_times));
+	if (!times)
+		return (NULL);
+	times->die_time = ft_atoi(argv[2]);
+	times->eat_time = ft_atoi(argv[3]);
+	times->sleep_time = ft_atoi(argv[4]);
+	if (argc == 6)
+		times->nb_meal = ft_atoi(argv[5]);
+	else
+		times->nb_meal = -1;
+	times->start_time = getcurrenttime();
+	return (times);
+}
+
+void	init_philo(t_main *main)
+{
+	int	i;
+
+	i = 0;
+	while (i < main->nb_thread)
+	{
+		main->philo[i].id = i;
+		main->philo[i].last_meal = main->times->start_time;
+		main->philo[i].nb_meal_ate = 0;
+		main->philo[i].state = -1;
+		main->philo[i].times = main->times;
+		pthread_mutex_init(&main->philo[i++].fork, NULL);
+	}
+	i = 0;
+	while (i < main->nb_thread - 1)
+	{
+		main->philo[i].next_fork = &main->philo[i + 1].fork;
+		i++;
+	}
+	main->philo[i].next_fork = &main->philo[0].fork;
+}
