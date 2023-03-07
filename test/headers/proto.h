@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:38:18 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/05 16:37:11 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/07 17:28:40 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_philo
 {
 	int					id;
 	unsigned long long	last_meal;
+	int					nb_meal_eated;
 	int					state;
 	pthread_mutex_t		fork;
 	pthread_mutex_t		*next_fork;
@@ -37,8 +38,8 @@ typedef struct s_philo
 
 typedef struct s_main
 {
-	int					nb_fork;
-	pthread_mutex_t		*print;
+	int					nb_philo;
+	pthread_mutex_t		print;
 	t_times				*times;
 	t_philo				*first_philo;
 }	t_main;
@@ -68,5 +69,6 @@ unsigned long long	getrunningtime(t_main *main);
 
 /*		UTILS		*/
 int					ft_atoi(char *str);
+void print_philo(t_main *main);
 
 #endif

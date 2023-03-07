@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:09:01 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/05 16:37:32 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/07 17:30:02 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,27 @@
 int	init(t_main *main, int argc, char **argv)
 {
 	int		i;
-	int		nb_philo;
 	t_philo	*philo;
 
 	i = 0;
-	nb_philo = ft_atoi(argv[1]);
+	main->nb_philo = ft_atoi(argv[1]);
 	main->first_philo = NULL;
-	pthread_mutex_init(main->print, NULL);
+	pthread_mutex_init(&main->print, NULL);
 	main->times = init_times(argc, argv);
 	if (!main->times)
 		return (clear_main(main));
-	main->nb_fork = nb_philo;
-	while (i < nb_philo)
+	printf("nb philo: %i\n", main->nb_philo);
+	while (i < main->nb_philo)
 	{
+		printf("%i\n", i);
 		philo = create_philo(main, i++);
 		if (!philo || !add_back(main, philo))
 			return (clear_philo(main));
+		//print_philo(main);
 	}
+	philo->next = main->first_philo;
+	philo->next_fork = &main->first_philo->fork;
+	main->first_philo->prev = philo;
 	return (0);
 }
 

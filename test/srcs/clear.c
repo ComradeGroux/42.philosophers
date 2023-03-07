@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 16:13:37 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/05 16:13:57 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/07 15:51:54 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	clear_main(t_main *main)
 {
-	pthread_mutex_destroy(main->print);
+	pthread_mutex_destroy(&main->print);
 	free(main->times);
 	return (1);
 }
