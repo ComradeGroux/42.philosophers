@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:37:54 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/07 18:42:09 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/13 13:50:57 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 void	clear_all(t_main *main)
 {
-	int	i;
-
+	destroy_mutex(main);
 	free(main->times);
-	pthread_mutex_destroy(&main->print);
-	i = 0;
-	while (i < main->nb_thread)
-		pthread_mutex_destroy(&main->philo[i++].fork);
 	free(main->philo);
 }

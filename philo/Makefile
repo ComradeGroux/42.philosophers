@@ -6,7 +6,7 @@
 #    By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/07 13:09:11 by vgroux            #+#    #+#              #
-#    Updated: 2023/03/07 18:52:42 by vgroux           ###   ########.fr        #
+#    Updated: 2023/03/13 13:47:58 by vgroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,14 @@ DIR_H = headers/
 DIR_S =	srcs/
 DIR_O =	objs/
 
-SRCS_LIST =	main.c \
-			init.c \
-			utils.c \
-			clear.c \
+SRCS_LIST = clear.c \
 			error.c \
+			init.c \
+			main.c \
+			routine.c \
+			thread.c \
 			time.c \
+			utils.c \
 
 SRCS =		${addprefix ${DIR_S}, ${SRCS_LIST}}
 

@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:58:09 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/07 18:53:51 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/13 13:46:18 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_times	*init_times(int argc, char **argv)
 	return (times);
 }
 
-void	init_philo(t_main *main)
+int	init_philo(t_main *main)
 {
 	int	i;
 
@@ -68,7 +68,8 @@ void	init_philo(t_main *main)
 		main->philo[i].nb_meal_ate = 0;
 		main->philo[i].state = -1;
 		main->philo[i].times = main->times;
-		pthread_mutex_init(&main->philo[i++].fork, NULL);
+		if(pthread_mutex_init(&main->philo[i++].fork, NULL) != 0)
+			return (0);
 	}
 	i = 0;
 	while (i < main->nb_thread - 1)
@@ -77,4 +78,5 @@ void	init_philo(t_main *main)
 		i++;
 	}
 	main->philo[i].next_fork = &main->philo[0].fork;
+	return (1);
 }

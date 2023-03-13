@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:29 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/07 18:53:14 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/13 13:52:56 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,15 @@ int					main(int argc, char **argv);
 int					init(t_main *main, int argc, char **argv);
 int					init_main(t_main *main, int argc, char **argv);
 t_times				*init_times(int argc, char **argv);
-void				init_philo(t_main *main);
+int					init_philo(t_main *main);
+
+/*		THREAD		*/
+int					init_thread(t_main *main);
+void				join_thread(t_main *main);
+void				destroy_mutex(t_main *main);
+
+/*		ROUTINE		*/
+void				*routine(void *args);
 
 /*		TIMES		*/
 unsigned long long	getcurrenttime(void);
