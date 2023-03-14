@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
+/*   By: vgroux <vgroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:29 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/13 13:52:56 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/14 18:50:04 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
+
+# define DEAD 0
+# define STATE_DEAD "died"
+# define EAT 1
+# define STATE_EAT "is eating"
+# define FORK 2
+# define STATE_FORK "has taken a fork"
+# define SLEEP 3
+# define STATE_SLEEP "is sleeping"
+# define THINK 4
+# define STATE_THINK "is thinking"
+
 
 # define ERR_FEW_ARG "Too few arguments"
 # define ERR_MANY_ARG "Too many arguments"
@@ -49,6 +61,7 @@ typedef struct s_philo
 typedef struct s_main
 {
 	int				nb_thread;
+	int				id_philo;
 	int				philo_dead;
 	pthread_mutex_t	print;
 	t_philo			*philo;
@@ -71,6 +84,7 @@ void				destroy_mutex(t_main *main);
 
 /*		ROUTINE		*/
 void				*routine(void *args);
+void				print_status(t_main *main);
 
 /*		TIMES		*/
 unsigned long long	getcurrenttime(void);
@@ -78,6 +92,7 @@ unsigned long long	getrunningtime(t_main *main);
 
 /*		UTILS		*/
 int					ft_atoi(char *str);
+char				*get_state(t_main *main);
 
 /*		ERROR		*/
 int					check_arg(int argc, char **argv);

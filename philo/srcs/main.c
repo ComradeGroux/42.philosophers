@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
+/*   By: vgroux <vgroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:13 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/13 13:59:47 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/14 18:39:09 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		return (err(ERR_INIT, 0));
 	if (!init_thread(&main))
 		return (err(ERR_INIT, 0));
-	usleep(1000);
+	//execute_waiter(&main);
 	clear_all(&main);
 	return (0);
 }

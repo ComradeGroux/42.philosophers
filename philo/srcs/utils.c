@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
+/*   By: vgroux <vgroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 17:06:27 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/13 13:54:16 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/14 18:47:57 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,21 @@ int	ft_atoi(char *str)
 	else if (nb > 2147483647)
 		return (-1);
 	return (nb);
+}
+
+char	*get_state(t_main *main)
+{
+	int	state;
+
+	state = main->philo[main->id_philo].state;
+	if (state == DEAD)
+		return (STATE_DEAD);
+	else if (state == EAT)
+		return (STATE_EAT);
+	else if (state == FORK)
+		return (STATE_FORK);
+	else if (state == SLEEP)
+		return (STATE_SLEEP);
+	else if (state == THINK)
+		return (STATE_THINK);
 }
