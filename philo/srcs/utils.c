@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 17:06:27 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/17 15:08:50 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/17 17:17:56 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,16 @@ char	*get_state(t_philo *philo)
 	else if (state == THINK)
 		return (STATE_THINK);
 	return (NULL);
+}
+
+void	print_status(t_main *main, t_philo *philo)
+{
+	char	*str;
+
+	str = get_state(philo);
+	if (!str)
+		return ;
+	pthread_mutex_lock(&main->print);
+	printf("%llu %i %s\n", getcurrenttime(), philo->id, str);
+	pthread_mutex_unlock(&main->print);
 }

@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:29 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/17 16:56:08 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/17 17:18:30 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/time.h>
 # include <pthread.h>
 
+# define INIT -1
 # define DEAD 0
 # define STATE_DEAD "died"
 # define EAT 1
@@ -82,8 +83,8 @@ void				join_thread(t_main *main);
 void				destroy_mutex(t_main *main);
 
 /*		ROUTINE		*/
+int					routine_execute(t_main *main, t_philo *philo);
 void				*routine(void *args);
-void				print_status(t_main *main, t_philo *philo);
 
 /*		PHILO		*/
 int					philo_eat(t_main *main, t_philo *philo);
@@ -97,6 +98,7 @@ unsigned long long	getrunningtime(t_main *main);
 /*		UTILS		*/
 int					ft_atoi(char *str);
 char				*get_state(t_philo *philo);
+void				print_status(t_main *main, t_philo *philo);
 
 /*		ERROR		*/
 int					check_arg(int argc, char **argv);

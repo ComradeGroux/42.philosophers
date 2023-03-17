@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:58:09 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/17 15:04:12 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/17 17:08:07 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_times	*init_times(int argc, char **argv)
 	if (argc == 6)
 		times->nb_meal = ft_atoi(argv[5]);
 	else
-		times->nb_meal = -1;
+		times->nb_meal = INIT;
 	times->start_time = getcurrenttime();
 	return (times);
 }
@@ -66,7 +66,7 @@ int	init_philo(t_main *main)
 		main->philo[i].id = i;
 		main->philo[i].last_meal = main->times->start_time;
 		main->philo[i].nb_meal_ate = 0;
-		main->philo[i].state = -1;
+		main->philo[i].state = INIT;
 		main->philo[i].times = main->times;
 		if (pthread_mutex_init(&main->philo[i++].fork, NULL) != 0)
 			return (0);
