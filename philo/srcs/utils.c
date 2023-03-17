@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 17:06:27 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/17 12:52:43 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/17 15:08:50 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int	ft_atoi(char *str)
 	return (nb);
 }
 
-char	*get_state(t_main *main)
+char	*get_state(t_philo *philo)
 {
 	int	state;
 
-	state = main->philo[main->id_philo].state;
+	state = philo->state;
 	if (state == DEAD)
 		return (STATE_DEAD);
 	else if (state == EAT)

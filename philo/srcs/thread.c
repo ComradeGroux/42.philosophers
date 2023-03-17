@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:45:39 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/17 12:53:29 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/17 15:04:59 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	init_thread(t_main *main)
 	while (i < main->nb_thread)
 	{
 		main->id_philo = i;
-		if (pthread_create(&main->philo[i].th, NULL, &routine, (void *)main) != 0)
+		if (pthread_create(&main->philo[i].th, NULL, &routine, (void *)main))
 			return (0);
 		usleep(100);
 		i++;

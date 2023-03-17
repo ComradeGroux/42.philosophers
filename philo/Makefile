@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vgroux <vgroux@student.42.fr>              +#+  +:+       +#+         #
+#    By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/07 13:09:11 by vgroux            #+#    #+#              #
-#    Updated: 2023/03/14 17:19:28 by vgroux           ###   ########.fr        #
+#    Updated: 2023/03/17 16:56:19 by vgroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,17 +33,18 @@ SRCS_LIST = clear.c \
 			thread.c \
 			time.c \
 			utils.c \
+			philo.c
 
 SRCS =		${addprefix ${DIR_S}, ${SRCS_LIST}}
 
 OBJS =		${SRCS:${DIR_S}%.c=${DIR_O}%.o}
 
+all: ${NAME}
+
 ${NAME}: ${OBJS}
 	@echo "$(RESET)[$(GREENGREEN)${NAME}$(RESET)]: ${NAME} Objects were created${GREY}"
 	${CC} -pthread ${OBJS} -o ${NAME}
 	@echo "$(RESET)[$(GREENGREEN)${NAME}$(RESET)]: ${NAME} created !"
-
-all: ${NAME}
 
 ${DIR_O}%.o: ${DIR_S}%.c
 	@printf "\033[38;5;240m"

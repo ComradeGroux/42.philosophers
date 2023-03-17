@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:29 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/17 12:55:25 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/17 16:56:08 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # define STATE_SLEEP "is sleeping"
 # define THINK 4
 # define STATE_THINK "is thinking"
-
 
 # define ERR_FEW_ARG "Too few arguments"
 # define ERR_MANY_ARG "Too many arguments"
@@ -84,7 +83,12 @@ void				destroy_mutex(t_main *main);
 
 /*		ROUTINE		*/
 void				*routine(void *args);
-void				print_status(t_main *main);
+void				print_status(t_main *main, t_philo *philo);
+
+/*		PHILO		*/
+int					philo_eat(t_main *main, t_philo *philo);
+int					philo_sleep(t_main *main, t_philo *philo);
+int					philo_think(t_main *main, t_philo *philo);
 
 /*		TIMES		*/
 unsigned long long	getcurrenttime(void);
@@ -92,7 +96,7 @@ unsigned long long	getrunningtime(t_main *main);
 
 /*		UTILS		*/
 int					ft_atoi(char *str);
-char				*get_state(t_main *main);
+char				*get_state(t_philo *philo);
 
 /*		ERROR		*/
 int					check_arg(int argc, char **argv);

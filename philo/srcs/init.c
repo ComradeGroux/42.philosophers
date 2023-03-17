@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgroux <vgroux@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:58:09 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/14 17:41:41 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/17 15:04:12 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	init_philo(t_main *main)
 		main->philo[i].nb_meal_ate = 0;
 		main->philo[i].state = -1;
 		main->philo[i].times = main->times;
-		if(pthread_mutex_init(&main->philo[i++].fork, NULL) != 0)
+		if (pthread_mutex_init(&main->philo[i++].fork, NULL) != 0)
 			return (0);
 	}
 	i = 0;
