@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:21:33 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/17 17:22:11 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/20 18:37:38 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	*routine(void *args)
 	main = args;
 	times = main->times;
 	philo = &main->philo[main->id_philo];
-	printf("Thread id: %i\n", main->id_philo);
 	if (times->nb_meal >= 0)
 	{
 		while (philo->nb_meal_ate < times->nb_meal && !main->philo_dead)
