@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 17:06:27 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/22 17:04:18 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/22 17:33:34 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,27 @@ char	*get_state(t_philo *philo)
 	return (NULL);
 }
 
-void	print_status(t_main *main, t_philo *philo)
+int	print_status(t_main *main, t_philo *philo)
 {
 	char	*str;
 
-	if (!philo)
+	if (main->philo_dead)
+		return (1);
+	else if (!philo)
+	{
+		pthread_mutex_lock(&main->print);
 		printf("%llu 0 %s\n", deltatime(main), STATE_DEAD);
+		pthread_mutex_unlock(&main->print);
+		return (1);
+	}
 	else
 	{
 		str = get_state(philo);
 		if (!str)
-			return ;
+			return (1);
 		pthread_mutex_lock(&main->print);
 		printf("%llu %i %s\n", deltatime(main), philo->id, str);
 		pthread_mutex_unlock(&main->print);
 	}
+	return (0);
 }
