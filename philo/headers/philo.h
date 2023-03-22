@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:29 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/17 17:18:30 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/22 17:00:16 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define ERR_MANY_ARG "Too many arguments"
 # define ERR_POS_ARG "Arguments must be positive"
 # define ERR_INIT "Something happen during the initialisation"
-
+# define ERR_NB_PHILO "At least one philosopher must be present"
 typedef struct s_times
 {
 	unsigned long long	die_time;
@@ -64,6 +64,7 @@ typedef struct s_main
 	int				id_philo;
 	int				philo_dead;
 	pthread_mutex_t	print;
+	pthread_mutex_t	init;
 	t_philo			*philo;
 	t_times			*times;
 }	t_main;
@@ -76,9 +77,9 @@ int					init(t_main *main, int argc, char **argv);
 int					init_main(t_main *main, int argc, char **argv);
 t_times				*init_times(int argc, char **argv);
 int					init_philo(t_main *main);
+int					init_thread(t_main *main);
 
 /*		THREAD		*/
-int					init_thread(t_main *main);
 void				join_thread(t_main *main);
 void				destroy_mutex(t_main *main);
 
@@ -94,6 +95,7 @@ int					philo_think(t_main *main, t_philo *philo);
 /*		TIMES		*/
 unsigned long long	getcurrenttime(void);
 unsigned long long	getrunningtime(t_main *main);
+unsigned long long	deltatime(t_main *main);
 
 /*		UTILS		*/
 int					ft_atoi(char *str);
@@ -106,5 +108,6 @@ int					err(char *str, int flag);
 
 /*		CLEAR		*/
 void				clear_all(t_main *main);
+int					clear_exit(t_main *main);
 
 #endif

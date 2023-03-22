@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:21:33 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/20 18:37:38 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/22 15:17:14 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 */
 int	routine_execute(t_main *main, t_philo *philo)
 {
-	if (getcurrenttime() - philo->last_meal > main->times->die_time * 1000)
+	if (getcurrenttime() - philo->last_meal > main->times->die_time)
 	{
 		main->philo_dead = 1;
 		philo->state = DEAD;

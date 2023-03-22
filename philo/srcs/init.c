@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:58:09 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/17 17:08:07 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/22 15:26:08 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ int	init_main(t_main *main, int argc, char **argv)
 	if (!main->philo)
 		return (1);
 	pthread_mutex_init(&main->print, NULL);
+	pthread_mutex_init(&main->init, NULL);
 	main->times = init_times(argc, argv);
 	if (!main->times)
 	{
 		pthread_mutex_destroy(&main->print);
+		pthread_mutex_destroy(&main->init);
 		free(main->philo);
 		return (1);
 	}
@@ -78,5 +80,23 @@ int	init_philo(t_main *main)
 		i++;
 	}
 	main->philo[i].next_fork = &main->philo[0].fork;
+	return (1);
+}
+
+int	init_thread(t_main *main)
+{
+	int	i;
+
+	i = 0;
+	while (i < main->nb_thread)
+	{
+		main->id_philo = i;
+		pthread_mutex_lock(&main->init);
+		if (pthread_create(&main->philo[i].th, NULL, &routine, (void *)main))
+			return (0);
+		pthread_mutex_unlock(&main->init);
+		usleep(50);
+		i++;
+	}
 	return (1);
 }

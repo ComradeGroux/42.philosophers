@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgroux <vgroux@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:06:53 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/14 17:25:41 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/22 17:01:17 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ int	check_arg(int argc, char **argv)
 		}
 		i++;
 	}
+	if (ft_atoi(argv[1]) == 0)
+	{
+		err(ERR_NB_PHILO, 1);
+		return (1);
+	}
 	return (0);
 }
 
@@ -45,7 +50,7 @@ int	check_arg(int argc, char **argv)
 */
 int	err(char *str, int flag)
 {
-	printf("philo: error: %s\n", str);
+	printf("philo: error: %s\n\n", str);
 	if (flag)
 	{
 		printf("./philo number_of_philosophers time_to_die time_to_eat ");
