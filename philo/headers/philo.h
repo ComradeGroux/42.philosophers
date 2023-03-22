@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:29 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/22 17:00:16 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/22 17:03:28 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define ERR_POS_ARG "Arguments must be positive"
 # define ERR_INIT "Something happen during the initialisation"
 # define ERR_NB_PHILO "At least one philosopher must be present"
+
 typedef struct s_times
 {
 	unsigned long long	die_time;
@@ -71,6 +72,7 @@ typedef struct s_main
 
 /*		MAIN		*/
 int					main(int argc, char **argv);
+int					only_one(t_main *main);
 
 /*		INIT		*/
 int					init(t_main *main, int argc, char **argv);
