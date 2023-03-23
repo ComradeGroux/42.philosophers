@@ -6,7 +6,7 @@
 #    By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 14:55:53 by vgroux            #+#    #+#              #
-#    Updated: 2023/03/22 15:29:50 by vgroux           ###   ########.fr        #
+#    Updated: 2023/03/23 18:40:22 by vgroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ SRCS =		${addprefix ${DIR_S}, ${SRCS_LIST}}
 OBJS =		${SRCS:${DIR_S}%.c=${DIR_O}%.o}
 
 ${NAME}: ${OBJS}
-	@echo "$(RESET)[$(GREENGREEN)${NAME}$(RESET)]: ${NAME} Objects were created${GREY}"
+	@echo "$(RESET)[$(GREENGREEN)${NAME}$(RESET)]: ${NAME} objects were created${GREY}"
 	${CC} ${OBJS} -lpthread -o ${NAME}
 	@echo "$(RESET)[$(GREENGREEN)${NAME}$(RESET)]: ${NAME} created !"
 
@@ -53,22 +53,19 @@ ${DIR_O}%.o:${DIR_S}%.c
 	${CC} ${CFLAGS} -I ${DIR_H} -o $@ -c $<
 
 clean:
-	@echo "$(RED) ██████╗██╗     ███████╗ █████╗ ███╗   ██╗██╗███╗   ██╗ ██████╗$(RESET)"
-	@echo "$(RED) ██╔════╝██║     ██╔════╝██╔══██╗████╗  ██║██║████╗  ██║██╔════╝$(RESET)"
-	@echo "$(RED) ██║     ██║     █████╗  ███████║██╔██╗ ██║██║██╔██╗ ██║██║  ███╗$(RESET)"
-	@echo "$(RED) ██║     ██║     ██╔══╝  ██╔══██║██║╚██╗██║██║██║╚██╗██║██║   ██║$(RESET)"
-	@echo "$(RED) ╚██████╗███████╗███████╗██║  ██║██║ ╚████║██║██║ ╚████║╚██████╔╝$(RESET)"
-	@echo "$(RED)  ╚═════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═══╝ ╚═════╝ $(RESET)"
-	@echo "[$(RED)${NAME}$(RESET)]: Cleaning ${NAME} Objects...${GREY}"
+	@echo "[$(RED)${NAME}$(RESET)]: oleaning ${NAME} objects...${GREY}"
 	${RM} ${OBJS}
 	${RM} ${DIR_O}
-	@echo "[$(RED)${NAME}$(RESET)]: ${NAME} Objects were cleaned${GREY}"
+	@echo "[$(RED)${NAME}$(RESET)]: ${NAME} objects were cleaned${GREY}"
 
 fclean: clean
-	@echo "${RESET}[$(RED)${NAME}$(RESET)]: Cleaning ${NAME}...${GREY}"
+	@echo "${RESET}[$(RED)${NAME}$(RESET)]: oleaning ${NAME}...${GREY}"
 	${RM} ${NAME}
-	@echo "${RESET}[$(RED)${NAME}$(RESET)]: ${NAME} Executable was cleaned"
+	@echo "${RESET}[$(RED)${NAME}$(RESET)]: ${NAME} executable was cleaned"
 
-re: fclean all
+printcompil:
+	@echo "$(RESET)[$(GREENGREEN)${NAME}$(RESET)]: ${NAME} objects compilation...${GREY}"
+
+re: fclean printcompil all
 
 .PHONY: all clean fclean re
