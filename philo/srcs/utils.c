@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 17:06:27 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/22 17:33:34 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/23 11:55:58 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,12 @@ char	*get_state(t_philo *philo)
 	return (NULL);
 }
 
-int	print_status(t_main *main, t_philo *philo)
+int	print_status(t_main *main, t_philo *philo, int f)
 {
 	char	*str;
 
+	if (f)
+		printf("%llu %i %s\n", deltatime(main), philo->id, STATE_DEAD);
 	if (main->philo_dead)
 		return (1);
 	else if (!philo)
@@ -74,5 +76,15 @@ int	print_status(t_main *main, t_philo *philo)
 		printf("%llu %i %s\n", deltatime(main), philo->id, str);
 		pthread_mutex_unlock(&main->print);
 	}
+	return (0);
+}
+
+/**
+ * Return 1 if the philosopher is dead
+*/
+int	is_dead_eat_time(t_philo *philo)
+{
+	if (getcurrenttime() - philo->last_meal > philo->times->die_time)
+		return (1);
 	return (0);
 }

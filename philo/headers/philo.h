@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:29 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/22 17:23:55 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/23 11:53:46 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ unsigned long long	deltatime(t_main *main);
 /*		UTILS		*/
 int					ft_atoi(char *str);
 char				*get_state(t_philo *philo);
-int					print_status(t_main *main, t_philo *philo);
+int					print_status(t_main *main, t_philo *philo, int f);
+int					is_dead_eat_time(t_philo *philo);
 
 /*		ERROR		*/
 int					check_arg(int argc, char **argv);

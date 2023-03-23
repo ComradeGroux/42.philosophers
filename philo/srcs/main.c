@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:13 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/22 17:03:45 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/23 11:58:48 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,19 @@ int	main(int argc, char **argv)
 	else
 	{
 		while (main.philo_dead == 0)
-			;
+		{
+			i = 0;
+			while (i < main.nb_thread)
+			{
+				if (is_dead_eat_time(&main.philo[i]))
+				{
+					print_status(&main, &main.philo[i], 1);
+					main.philo_dead++;
+					break ;
+				}
+				i++;
+			}
+		}
 	}
 	join_thread(&main);
 	clear_all(&main);
@@ -42,6 +54,6 @@ int	main(int argc, char **argv)
 int	only_one(t_main *main)
 {
 	usleep(main->times->die_time * 1000);
-	print_status(main, NULL);
+	print_status(main, NULL, 0);
 	return (1);
 }
