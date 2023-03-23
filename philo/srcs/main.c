@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:13 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/23 14:43:59 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/23 19:30:43 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 
 int	only_one(t_main *main)
 {
-	usleep(main->times->die_time * 1000);
+	nsleep(main->times->die_time);
 	print_status(main, NULL, 0);
 	return (1);
 }
