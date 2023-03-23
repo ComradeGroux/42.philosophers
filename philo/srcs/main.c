@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:13 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/23 11:58:48 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/23 14:15:09 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	if (!init_thread(&main))
 		return (err(ERR_INIT, 0));
 	if (main.times->nb_meal > 0)
-		while (main.philo_dead == 0)
+		while (main.philo_dead == 0 && every_philo_enough_ate(&main))
 			;
 	else
 	{
@@ -56,4 +56,18 @@ int	only_one(t_main *main)
 	usleep(main->times->die_time * 1000);
 	print_status(main, NULL, 0);
 	return (1);
+}
+
+int	every_philo_enough_ate(t_main *main)
+{
+	int	i;
+
+	i = 0;
+	while (i < main->nb_thread)
+	{
+		if (main->philo[i].nb_meal_ate < main->times->nb_meal)
+			return (1);
+		i++;
+	}
+	return (0);
 }

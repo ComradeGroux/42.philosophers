@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:29 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/23 11:53:46 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/23 14:15:23 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_main
 /*		MAIN		*/
 int					main(int argc, char **argv);
 int					only_one(t_main *main);
+int					every_philo_enough_ate(t_main *main);
 
 /*		INIT		*/
 int					init(t_main *main, int argc, char **argv);
@@ -104,6 +105,7 @@ int					ft_atoi(char *str);
 char				*get_state(t_philo *philo);
 int					print_status(t_main *main, t_philo *philo, int f);
 int					is_dead_eat_time(t_philo *philo);
+int					print_info(t_main *main, int philo_id, char *str);
 
 /*		ERROR		*/
 int					check_arg(int argc, char **argv);

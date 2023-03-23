@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:58:09 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/22 15:26:08 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/23 13:29:22 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	init_thread(t_main *main)
 		if (pthread_create(&main->philo[i].th, NULL, &routine, (void *)main))
 			return (0);
 		pthread_mutex_unlock(&main->init);
-		usleep(50);
+		usleep(500);
 		i++;
 	}
 	return (1);

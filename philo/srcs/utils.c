@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 17:06:27 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/23 11:55:58 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/23 14:09:48 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,9 @@ int	print_status(t_main *main, t_philo *philo, int f)
 
 	if (f)
 		printf("%llu %i %s\n", deltatime(main), philo->id, STATE_DEAD);
-	if (main->philo_dead)
-		return (1);
 	else if (!philo)
 	{
-		pthread_mutex_lock(&main->print);
-		printf("%llu 0 %s\n", deltatime(main), STATE_DEAD);
-		pthread_mutex_unlock(&main->print);
+		print_info(main, 0, STATE_DEAD);
 		return (1);
 	}
 	else
@@ -72,9 +68,7 @@ int	print_status(t_main *main, t_philo *philo, int f)
 		str = get_state(philo);
 		if (!str)
 			return (1);
-		pthread_mutex_lock(&main->print);
-		printf("%llu %i %s\n", deltatime(main), philo->id, str);
-		pthread_mutex_unlock(&main->print);
+		return (print_info(main, philo->id, str));
 	}
 	return (0);
 }
@@ -86,5 +80,18 @@ int	is_dead_eat_time(t_philo *philo)
 {
 	if (getcurrenttime() - philo->last_meal > philo->times->die_time)
 		return (1);
+	return (0);
+}
+
+int	print_info(t_main *main, int philo_id, char *str)
+{
+	pthread_mutex_lock(&main->print);
+	if (main->philo_dead)
+	{
+		pthread_mutex_unlock(&main->print);
+		return (1);
+	}
+	printf("%llu %i %s\n", deltatime(main), philo_id, str);
+	pthread_mutex_unlock(&main->print);
 	return (0);
 }
