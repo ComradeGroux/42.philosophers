@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:16:55 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/23 19:29:37 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/23 21:41:22 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ unsigned long long	deltatime(t_main *main)
 	return (getcurrenttime() - main->times->start_time);
 }
 
-void	nsleep(unsigned long long time)
+void	nsleep(unsigned long long to_wait)
 {
 	unsigned long long	target;
 
-	target = getcurrenttime() + time;
+	target = getcurrenttime() + to_wait;
 	while (getcurrenttime() < target)
 	{
 		usleep(5);

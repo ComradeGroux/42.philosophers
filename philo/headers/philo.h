@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:29 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/23 19:19:14 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/23 21:41:29 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int					philo_think(t_main *main, t_philo *philo);
 unsigned long long	getcurrenttime(void);
 unsigned long long	getrunningtime(t_main *main);
 unsigned long long	deltatime(t_main *main);
-void				nsleep(unsigned long long time);
+void				nsleep(unsigned long long to_wait);
 
 /*		UTILS		*/
 int					ft_atoi(char *str);
