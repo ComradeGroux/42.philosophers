@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:13 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/23 14:23:45 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/23 14:43:59 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int argc, char **argv)
 {
 	t_main	main;
-	int		i;
 
 	if (check_arg(argc, argv))
 		return (1);
@@ -29,20 +28,7 @@ int	main(int argc, char **argv)
 		while (main.philo_dead == 0 && every_philo_enough_ate(&main))
 			;
 	else
-	{
-		i = 0;
-		while (main.philo_dead == 0 && i < main.nb_thread)
-		{
-			if (is_dead_eat_time(&main.philo[i]))
-			{
-				print_status(&main, &main.philo[i], 1);
-				break ;
-			}
-			i++;
-			if (i == main.nb_thread)
-				i = 0;
-		}
-	}
+		infinite_loop(&main);
 	join_thread(&main);
 	clear_all(&main);
 	return (0);
@@ -67,4 +53,22 @@ int	every_philo_enough_ate(t_main *main)
 		i++;
 	}
 	return (0);
+}
+
+void	infinite_loop(t_main *main)
+{
+	int	i;
+
+	i = 0;
+	while (main->philo_dead == 0 && i < main->nb_thread)
+	{
+		if (is_dead_eat_time(&main->philo[i]))
+		{
+			print_status(main, &main->philo[i], 1);
+			break ;
+		}
+		i++;
+		if (i == main->nb_thread)
+			i = 0;
+	}
 }

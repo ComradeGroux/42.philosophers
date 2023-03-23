@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:29 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/23 14:15:23 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/23 14:43:52 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_main
 int					main(int argc, char **argv);
 int					only_one(t_main *main);
 int					every_philo_enough_ate(t_main *main);
+void				infinite_loop(t_main *main);
 
 /*		INIT		*/
 int					init(t_main *main, int argc, char **argv);
