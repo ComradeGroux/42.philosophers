@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 17:06:27 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/23 14:09:48 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/23 14:17:27 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ int	print_status(t_main *main, t_philo *philo, int f)
 	char	*str;
 
 	if (f)
+	{
 		printf("%llu %i %s\n", deltatime(main), philo->id, STATE_DEAD);
+		main->philo_dead++;
+	}
 	else if (!philo)
 	{
 		print_info(main, 0, STATE_DEAD);

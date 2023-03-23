@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:13 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/23 14:15:09 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/23 14:23:45 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int argc, char **argv)
 	t_main	main;
 	int		i;
 
-	(void)i;
 	if (check_arg(argc, argv))
 		return (1);
 	if (init(&main, argc, argv))
@@ -31,19 +30,17 @@ int	main(int argc, char **argv)
 			;
 	else
 	{
-		while (main.philo_dead == 0)
+		i = 0;
+		while (main.philo_dead == 0 && i < main.nb_thread)
 		{
-			i = 0;
-			while (i < main.nb_thread)
+			if (is_dead_eat_time(&main.philo[i]))
 			{
-				if (is_dead_eat_time(&main.philo[i]))
-				{
-					print_status(&main, &main.philo[i], 1);
-					main.philo_dead++;
-					break ;
-				}
-				i++;
+				print_status(&main, &main.philo[i], 1);
+				break ;
 			}
+			i++;
+			if (i == main.nb_thread)
+				i = 0;
 		}
 	}
 	join_thread(&main);
