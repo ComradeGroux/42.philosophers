@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:58:09 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/23 19:24:52 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/24 15:26:53 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ int	init_main(t_main *main, int argc, char **argv)
 		return (1);
 	pthread_mutex_init(&main->print, NULL);
 	pthread_mutex_init(&main->init, NULL);
+	pthread_mutex_init(&main->mutex_dead, NULL);
 	main->times = init_times(argc, argv);
 	if (!main->times)
 	{
 		pthread_mutex_destroy(&main->print);
 		pthread_mutex_destroy(&main->init);
+		pthread_mutex_destroy(&main->mutex_dead);
 		free(main->philo);
 		return (1);
 	}
@@ -55,6 +57,7 @@ t_times	*init_times(int argc, char **argv)
 	else
 		times->nb_meal = INIT;
 	times->start_time = getcurrenttime();
+	pthread_mutex_init(&times->mutex_times, NULL);
 	return (times);
 }
 
@@ -90,13 +93,13 @@ int	init_thread(t_main *main)
 	i = 0;
 	while (i < main->nb_thread)
 	{
-		main->id_philo = i;
 		pthread_mutex_lock(&main->init);
+		main->id_philo = i;
 		if (pthread_create(&main->philo[i].th, NULL, &routine, (void *)main))
 			return (0);
-		pthread_mutex_unlock(&main->init);
 		usleep(500);
 		i++;
+		pthread_mutex_unlock(&main->init);
 	}
 	return (1);
 }

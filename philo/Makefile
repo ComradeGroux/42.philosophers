@@ -6,7 +6,7 @@
 #    By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 14:55:53 by vgroux            #+#    #+#              #
-#    Updated: 2023/03/23 18:40:22 by vgroux           ###   ########.fr        #
+#    Updated: 2023/03/24 13:47:25 by vgroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RESET = \033[0m
 NAME =     philo
 
 CC =         gcc
-CFLAGS =     -Wall -Wextra -Werror
+CFLAGS =     -Wall -Wextra -Werror -fsanitize=thread
 RM =         rm -rf
 
 DIR_H = headers/
@@ -42,7 +42,7 @@ OBJS =		${SRCS:${DIR_S}%.c=${DIR_O}%.o}
 
 ${NAME}: ${OBJS}
 	@echo "$(RESET)[$(GREENGREEN)${NAME}$(RESET)]: ${NAME} objects were created${GREY}"
-	${CC} ${OBJS} -lpthread -o ${NAME}
+	${CC} ${OBJS} -lpthread -o ${NAME} -fsanitize=thread
 	@echo "$(RESET)[$(GREENGREEN)${NAME}$(RESET)]: ${NAME} created !"
 
 all: ${NAME}

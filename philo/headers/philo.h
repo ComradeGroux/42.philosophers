@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:29 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/23 21:41:29 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/24 15:26:21 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_times
 	unsigned long long	sleep_time;
 	int					nb_meal;
 	unsigned long long	start_time;
+	pthread_mutex_t		mutex_times;
 }	t_times;
 
 typedef struct s_philo
@@ -66,6 +67,7 @@ typedef struct s_main
 	int				philo_dead;
 	pthread_mutex_t	print;
 	pthread_mutex_t	init;
+	pthread_mutex_t	mutex_dead;
 	t_philo			*philo;
 	t_times			*times;
 }	t_main;
