@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:58:09 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/28 14:10:25 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/28 14:32:00 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_times	*init_times(int argc, char **argv)
 		times->nb_meal = ft_atoi(argv[5]);
 	else
 		times->nb_meal = INIT;
-	times->start_time = getcurrenttime();
+	times->start_time = getcurrenttime(NULL);
 	pthread_mutex_init(&times->mutex_times, NULL);
 	return (times);
 }

@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:13 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/23 19:30:43 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/28 14:37:40 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	infinite_loop(t_main *main)
 	i = 0;
 	while (main->philo_dead == 0 && i < main->nb_thread)
 	{
-		if (is_dead_eat_time(&main->philo[i]))
+		if (is_dead_eat_time(main, &main->philo[i]))
 		{
 			print_status(main, &main->philo[i], 1);
 			break ;

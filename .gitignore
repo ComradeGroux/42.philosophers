@@ -1,6 +1,7 @@
 # Others
 philo
 .DS_Store
+.excalidraw
 
 # Prerequisites
 *.d

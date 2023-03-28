@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:21:33 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/23 11:55:08 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/28 14:37:05 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 */
 int	routine_execute(t_main *main, t_philo *philo)
 {
-	if (is_dead_eat_time(philo))
+	if (is_dead_eat_time(main, philo))
 	{
 		philo->state = DEAD;
 		print_status(main, philo, 1);
