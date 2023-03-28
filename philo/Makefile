@@ -6,7 +6,7 @@
 #    By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 14:55:53 by vgroux            #+#    #+#              #
-#    Updated: 2023/03/24 13:47:25 by vgroux           ###   ########.fr        #
+#    Updated: 2023/03/28 14:20:14 by vgroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,15 @@ RESET = \033[0m
 NAME =     philo
 
 CC =         gcc
-CFLAGS =     -Wall -Wextra -Werror -fsanitize=thread
+CFLAGS =     -Wall -Wextra -Werror
 RM =         rm -rf
+
+SFLAGS = -fsanitize=thread -g
 
 DIR_H = headers/
 DIR_S =	srcs/
-CREATE_DIR_O = @mkdir -p objs
 DIR_O =	objs/
+DIR_SAN = san/
 
 SRCS_LIST =	main.c \
 			clear.c \
@@ -40,22 +42,33 @@ SRCS =		${addprefix ${DIR_S}, ${SRCS_LIST}}
 
 OBJS =		${SRCS:${DIR_S}%.c=${DIR_O}%.o}
 
+SAN-OBJS =	${SRCS:${DIR_S}%.c=${DIR_SAN}%.o}
+
 ${NAME}: ${OBJS}
 	@echo "$(RESET)[$(GREENGREEN)${NAME}$(RESET)]: ${NAME} objects were created${GREY}"
-	${CC} ${OBJS} -lpthread -o ${NAME} -fsanitize=thread
+	${CC} ${OBJS} -lpthread -o ${NAME}
 	@echo "$(RESET)[$(GREENGREEN)${NAME}$(RESET)]: ${NAME} created !"
 
 all: ${NAME}
+
+san: fclean ${SAN-OBJS}
+	${CC} ${SAN-OBJS} -lpthread -o ${NAME} ${SFLAGS}
 
 ${DIR_O}%.o:${DIR_S}%.c
 	@printf "${GREY}"
 	@mkdir -p ${DIR_O}
 	${CC} ${CFLAGS} -I ${DIR_H} -o $@ -c $<
 
+${DIR_SAN}%.o:${DIR_S}%.c
+	@printf "${GREY}"
+	@mkdir -p ${DIR_SAN}
+	${CC} ${CFLAGS} ${SFLAGS} -I ${DIR_H} -o $@ -c $<
+
 clean:
 	@echo "[$(RED)${NAME}$(RESET)]: oleaning ${NAME} objects...${GREY}"
 	${RM} ${OBJS}
 	${RM} ${DIR_O}
+	${RM} ${DIR_SAN}
 	@echo "[$(RED)${NAME}$(RESET)]: ${NAME} objects were cleaned${GREY}"
 
 fclean: clean
