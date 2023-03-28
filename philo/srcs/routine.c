@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:21:33 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/28 14:37:05 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/28 15:35:36 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ int	routine_execute(t_main *main, t_philo *philo)
 	{
 		philo->state = DEAD;
 		print_status(main, philo, 1);
+		pthread_mutex_lock(&main->mutex_dead);
 		main->philo_dead++;
+		pthread_mutex_unlock(&main->mutex_dead);
 		return (1);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:13 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/28 14:37:40 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/28 15:40:26 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,16 @@ int	every_philo_enough_ate(t_main *main)
 {
 	int	i;
 
-	i = 0;
-	while (i < main->nb_thread)
+	i = 1;
+	while (i <= main->nb_thread)
 	{
+		pthread_mutex_lock(&main->init);
 		if (main->philo[i].nb_meal_ate < main->times->nb_meal)
+		{
+			pthread_mutex_unlock(&main->init);
 			return (1);
+		}
+		pthread_mutex_unlock(&main->init);
 		i++;
 	}
 	return (0);
@@ -59,8 +64,8 @@ void	infinite_loop(t_main *main)
 {
 	int	i;
 
-	i = 0;
-	while (main->philo_dead == 0 && i < main->nb_thread)
+	i = 1;
+	while (main->philo_dead == 0 && i <= main->nb_thread)
 	{
 		if (is_dead_eat_time(main, &main->philo[i]))
 		{
@@ -69,6 +74,6 @@ void	infinite_loop(t_main *main)
 		}
 		i++;
 		if (i == main->nb_thread)
-			i = 0;
+			i = 1;
 	}
 }

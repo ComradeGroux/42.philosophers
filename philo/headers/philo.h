@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:29 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/28 14:49:52 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/28 15:41:31 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,8 @@ int					philo_sleep(t_main *main, t_philo *philo);
 int					philo_think(t_main *main, t_philo *philo);
 
 /*		TIMES		*/
-unsigned long long	getcurrenttime(t_main *main);
+unsigned long long	getcurrenttime(void);
 unsigned long long	getrunningtime(t_main *main);
-unsigned long long	deltatime(t_main *main);
 void				nsleep(unsigned long long time);
 
 /*		UTILS		*/

@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:58:09 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/28 14:32:00 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/28 15:41:11 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_times	*init_times(int argc, char **argv)
 		times->nb_meal = ft_atoi(argv[5]);
 	else
 		times->nb_meal = INIT;
-	times->start_time = getcurrenttime(NULL);
+	times->start_time = getcurrenttime();
 	pthread_mutex_init(&times->mutex_times, NULL);
 	return (times);
 }
@@ -65,8 +65,8 @@ int	init_philo(t_main *main)
 {
 	int	i;
 
-	i = 0;
-	while (i < main->nb_thread)
+	i = 1;
+	while (i <= main->nb_thread)
 	{
 		main->philo[i].id = i;
 		main->philo[i].last_meal = main->times->start_time;
@@ -76,8 +76,8 @@ int	init_philo(t_main *main)
 		if (pthread_mutex_init(&main->philo[i++].fork, NULL) != 0)
 			return (0);
 	}
-	i = 0;
-	while (i < main->nb_thread - 1)
+	i = 1;
+	while (i < main->nb_thread)
 	{
 		main->philo[i].next_fork = &main->philo[i + 1].fork;
 		i++;
@@ -90,8 +90,8 @@ int	init_thread(t_main *main)
 {
 	int	i;
 
-	i = 0;
-	while (i < main->nb_thread)
+	i = 1;
+	while (i <= main->nb_thread)
 	{
 		pthread_mutex_lock(&main->init);
 		main->id_philo = i;

@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 17:06:27 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/28 14:58:26 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/28 15:42:42 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	print_status(t_main *main, t_philo *philo, int f)
 	if (f)
 	{
 		pthread_mutex_lock(&main->print);
-		printf("%llu %i %s\n", deltatime(main), philo->id, STATE_DEAD);
+		printf("%llu %i %s\n", getrunningtime(main), philo->id, STATE_DEAD);
 		pthread_mutex_lock(&main->mutex_dead);
 		main->philo_dead++;
 		pthread_mutex_unlock(&main->mutex_dead);
@@ -89,7 +89,7 @@ int	is_dead_eat_time(t_main *main, t_philo *philo)
 	unsigned long long	time;
 
 	pthread_mutex_lock(&main->times->mutex_times);
-	time = getcurrenttime(main) - philo->last_meal;
+	time = getcurrenttime() - philo->last_meal;
 	if (time > philo->times->die_time)
 		res = 1;
 	else
@@ -101,12 +101,15 @@ int	is_dead_eat_time(t_main *main, t_philo *philo)
 int	print_info(t_main *main, int philo_id, char *str)
 {
 	pthread_mutex_lock(&main->print);
+	pthread_mutex_lock(&main->mutex_dead);
 	if (main->philo_dead)
 	{
+		pthread_mutex_unlock(&main->mutex_dead);
 		pthread_mutex_unlock(&main->print);
 		return (1);
 	}
-	printf("%llu %i %s\n", deltatime(main), philo_id, str);
+	pthread_mutex_unlock(&main->mutex_dead);
+	printf("%llu %i %s\n", getrunningtime(main), philo_id, str);
 	pthread_mutex_unlock(&main->print);
 	return (0);
 }
