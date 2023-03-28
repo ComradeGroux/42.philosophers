@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:45:39 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/24 15:27:13 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/28 14:49:45 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,19 @@ void	join_thread(t_main *main)
 		pthread_join(main->philo[i].th, NULL);
 		i++;
 	}
+}
+
+void	fork_lock(t_main *main, t_philo *philo)
+{
+	pthread_mutex_lock(&philo->fork);
+	philo->state = FORK;
+	print_status(main, philo, 0);
+	pthread_mutex_lock(philo->next_fork);
+	print_status(main, philo, 0);
+}
+
+void	fork_unlock(t_philo *philo)
+{
+	pthread_mutex_unlock(&philo->fork);
+	pthread_mutex_unlock(philo->next_fork);
 }

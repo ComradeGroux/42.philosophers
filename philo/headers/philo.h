@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:29 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/28 14:36:12 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/28 14:49:52 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ int					init_thread(t_main *main);
 /*		THREAD		*/
 void				join_thread(t_main *main);
 void				destroy_mutex(t_main *main);
+void				fork_lock(t_main *main, t_philo *philo);
+void				fork_unlock(t_philo *philo);
 
 /*		ROUTINE		*/
 int					routine_execute(t_main *main, t_philo *philo);

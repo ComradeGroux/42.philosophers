@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 17:06:27 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/28 14:35:49 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/28 14:58:26 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,16 @@ int	print_status(t_main *main, t_philo *philo, int f)
 */
 int	is_dead_eat_time(t_main *main, t_philo *philo)
 {
-	int	res;
+	int					res;
+	unsigned long long	time;
 
-	if (getcurrenttime(main) - philo->last_meal > philo->times->die_time)
+	pthread_mutex_lock(&main->times->mutex_times);
+	time = getcurrenttime(main) - philo->last_meal;
+	if (time > philo->times->die_time)
 		res = 1;
 	else
 		res = 0;
+	pthread_mutex_unlock(&main->times->mutex_times);
 	return (res);
 }
 
