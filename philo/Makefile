@@ -6,7 +6,7 @@
 #    By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 14:55:53 by vgroux            #+#    #+#              #
-#    Updated: 2023/03/28 14:20:14 by vgroux           ###   ########.fr        #
+#    Updated: 2023/03/30 09:39:11 by vgroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,14 +65,14 @@ ${DIR_SAN}%.o:${DIR_S}%.c
 	${CC} ${CFLAGS} ${SFLAGS} -I ${DIR_H} -o $@ -c $<
 
 clean:
-	@echo "[$(RED)${NAME}$(RESET)]: oleaning ${NAME} objects...${GREY}"
+	@echo "[$(RED)${NAME}$(RESET)]: cleaning ${NAME} objects...${GREY}"
 	${RM} ${OBJS}
 	${RM} ${DIR_O}
 	${RM} ${DIR_SAN}
 	@echo "[$(RED)${NAME}$(RESET)]: ${NAME} objects were cleaned${GREY}"
 
 fclean: clean
-	@echo "${RESET}[$(RED)${NAME}$(RESET)]: oleaning ${NAME}...${GREY}"
+	@echo "${RESET}[$(RED)${NAME}$(RESET)]: cleaning ${NAME}...${GREY}"
 	${RM} ${NAME}
 	@echo "${RESET}[$(RED)${NAME}$(RESET)]: ${NAME} executable was cleaned"
 
