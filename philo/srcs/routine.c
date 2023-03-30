@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:21:33 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/30 09:39:21 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/30 11:26:36 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,31 @@ void	*routine(void *args)
 	t_philo	*philo;
 	t_times	*times;
 
-	main = args;
+	philo = args;
+	main = philo->main;
 	times = main->times;
-	philo = &main->philo[main->id_philo];
 	if (times->nb_meal >= 0)
 	{
-		while (philo->nb_meal_ate < times->nb_meal && !main->philo_dead)
+		while (philo->nb_meal_ate < times->nb_meal && isdead(main))
 			routine_execute(main, philo);
 	}
 	else
 	{
-		while (!main->philo_dead)
+		while (isdead(main))
 			if (routine_execute(main, philo))
 				break ;
 	}
 	return (NULL);
+}
+
+int	isdead(t_main *main)
+{
+	pthread_mutex_lock(&main->mutex_dead);
+	if (!main->philo_dead)
+	{
+		pthread_mutex_unlock(&main->mutex_dead);
+		return (1);
+	}
+	pthread_mutex_unlock(&main->mutex_dead);
+	return (0);
 }

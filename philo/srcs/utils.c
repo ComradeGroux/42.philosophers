@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 17:06:27 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/28 15:42:42 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/30 11:24:55 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	print_status(t_main *main, t_philo *philo, int f)
 		main->philo_dead++;
 		pthread_mutex_unlock(&main->mutex_dead);
 		pthread_mutex_unlock(&main->print);
+		return (1);
 	}
 	else if (!philo)
 	{

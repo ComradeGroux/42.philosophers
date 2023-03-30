@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:13 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/28 15:40:26 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/30 11:26:41 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	main(int argc, char **argv)
 
 int	only_one(t_main *main)
 {
+	main->philo[0].state = FORK;
+	print_status(main, &main->philo[0], 0);
 	nsleep(main->times->die_time);
 	print_status(main, NULL, 0);
 	return (1);
@@ -65,7 +67,7 @@ void	infinite_loop(t_main *main)
 	int	i;
 
 	i = 1;
-	while (main->philo_dead == 0 && i <= main->nb_thread)
+	while (isdead(main) && i <= main->nb_thread)
 	{
 		if (is_dead_eat_time(main, &main->philo[i]))
 		{

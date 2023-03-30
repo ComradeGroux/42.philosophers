@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:50:29 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/28 15:41:31 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/30 11:26:49 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_philo
 	pthread_mutex_t		*next_fork;
 	pthread_t			th;
 	t_times				*times;
+	struct s_main		*main;
 }	t_philo;
 
 typedef struct s_main
@@ -94,6 +95,7 @@ void				fork_unlock(t_philo *philo);
 /*		ROUTINE		*/
 int					routine_execute(t_main *main, t_philo *philo);
 void				*routine(void *args);
+int					isdead(t_main *main);
 
 /*		PHILO		*/
 int					philo_eat(t_main *main, t_philo *philo);

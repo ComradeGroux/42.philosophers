@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 16:53:34 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/28 15:42:07 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/30 11:05:46 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ int	philo_eat(t_main *main, t_philo *philo)
 	philo->last_meal = getcurrenttime();
 	pthread_mutex_unlock(&main->times->mutex_times);
 	nsleep(philo->times->eat_time);
-	pthread_mutex_lock(&main->times->mutex_times);
-	philo->last_meal = getcurrenttime();
-	pthread_mutex_unlock(&main->times->mutex_times);
 	fork_unlock(philo);
 	pthread_mutex_lock(&main->init);
 	philo->nb_meal_ate++;

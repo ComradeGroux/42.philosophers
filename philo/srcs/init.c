@@ -6,7 +6,7 @@
 /*   By: vgroux <vgroux@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:58:09 by vgroux            #+#    #+#             */
-/*   Updated: 2023/03/28 15:41:11 by vgroux           ###   ########.fr       */
+/*   Updated: 2023/03/30 11:27:09 by vgroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,19 @@ int	init_philo(t_main *main)
 {
 	int	i;
 
-	i = 1;
+	i = 0;
 	while (i <= main->nb_thread)
 	{
-		main->philo[i].id = i;
+		main->philo[i].id = i + 1;
 		main->philo[i].last_meal = main->times->start_time;
 		main->philo[i].nb_meal_ate = 0;
 		main->philo[i].state = INIT;
 		main->philo[i].times = main->times;
+		main->philo[i].main = main;
 		if (pthread_mutex_init(&main->philo[i++].fork, NULL) != 0)
 			return (0);
 	}
-	i = 1;
+	i = 0;
 	while (i < main->nb_thread)
 	{
 		main->philo[i].next_fork = &main->philo[i + 1].fork;
@@ -93,13 +94,12 @@ int	init_thread(t_main *main)
 	i = 1;
 	while (i <= main->nb_thread)
 	{
-		pthread_mutex_lock(&main->init);
 		main->id_philo = i;
-		if (pthread_create(&main->philo[i].th, NULL, &routine, (void *)main))
+		if (pthread_create(&main->philo[i].th, NULL,
+				&routine, (void *)&main->philo[i]))
 			return (0);
 		nsleep(1);
 		i++;
-		pthread_mutex_unlock(&main->init);
 	}
 	return (1);
 }
